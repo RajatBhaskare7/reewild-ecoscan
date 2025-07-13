@@ -3,7 +3,7 @@ import * as mobilenet from "@tensorflow-models/mobilenet";
 import "@tensorflow/tfjs";
 import ResultComponent from "./result";
 import OffersComponent from "./offers";
-
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const UploadComponent = ({
 	items,
 	setItems,
@@ -61,7 +61,8 @@ const UploadComponent = ({
 						return [];
 					});
 				setItems(clothingItems);
-				const res = await fetch("http://localhost:5000/api/score", {
+				
+				const res = await fetch(`${API_BASE_URL}/score`, {
 					method: "POST",
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ items: clothingItems }),
@@ -70,7 +71,7 @@ const UploadComponent = ({
 				setScore(totalScore);
 				setPoints(rewardPoints);
 				const offersRes = await fetch(
-					`http://localhost:5000/api/offers?points=${rewardPoints}`
+					`${API_BASE_URL}/offers?points=${rewardPoints}`
 				);
 				const offers = await offersRes.json();
 				setOffers(offers);
