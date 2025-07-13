@@ -1,6 +1,6 @@
 module.exports = {
-    'T-shirt': 10,
+    'T-shirt': 5,
     'Jeans': 15,
     'Jacket': 20,
-    'Shoes': 10
+    'Shoes': 8
   };
