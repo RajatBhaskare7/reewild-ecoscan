@@ -1,21 +1,23 @@
 /* eslint-env jest */
 import React from "react";
 import { render, screen, fireEvent, waitFor } from "@testing-library/react";
+import { expect, describe, it, vi, beforeEach, afterEach } from "vitest";
 import "@testing-library/jest-dom";
 import UploadComponent from "./uploadContainer";
+
 // Mock TensorFlow.js and mobilenet
-jest.mock("@tensorflow-models/mobilenet", () => ({
-	load: jest.fn().mockResolvedValue({
-		classify: jest.fn().mockResolvedValue([
+vi.mock("@tensorflow-models/mobilenet", () => ({
+	load: vi.fn().mockResolvedValue({
+		classify: vi.fn().mockResolvedValue([
 			{ className: "T-shirt", probability: 0.9 },
 			{ className: "Jeans", probability: 0.8 },
 		]),
 	}),
 }));
-jest.mock("@tensorflow/tfjs", () => ({}));
+vi.mock("@tensorflow/tfjs", () => ({}));
 
-// Mock fetch
-global.fetch = jest.fn((url, options) => {
+// Helper to mock fetch
+const mockFetch = vi.fn((url, options) => {
 	if (url.includes("/score")) {
 		return Promise.resolve({
 			json: () => Promise.resolve({ totalScore: 20, rewardPoints: 10 }),
@@ -34,16 +36,23 @@ global.fetch = jest.fn((url, options) => {
 });
 
 describe("UploadComponent", () => {
+	beforeEach(() => {
+		vi.stubGlobal("fetch", mockFetch);
+	});
+	afterEach(() => {
+		vi.restoreAllMocks();
+	});
+
 	const setup = (props = {}) => {
 		const defaultProps = {
 			items: [],
-			setItems: jest.fn(),
+			setItems: vi.fn(),
 			score: 0,
-			setScore: jest.fn(),
+			setScore: vi.fn(),
 			points: 0,
-			setPoints: jest.fn(),
+			setPoints: vi.fn(),
 			offers: [],
-			setOffers: jest.fn(),
+			setOffers: vi.fn(),
 		};
 		return render(<UploadComponent {...defaultProps} {...props} />);
 	};
@@ -56,28 +65,24 @@ describe("UploadComponent", () => {
 		expect(screen.getByText(/No image selected/i)).toBeInTheDocument();
 	});
 
-	it("shows loading spinner when loading", () => {
+	it("shows loading spinner when loading", async () => {
 		setup();
-		// Simulate loading state
-		fireEvent.change(
-			screen
-				.getAllByLabelText(/Upload from device|Or take a photo/i)[0]
-				.querySelector("input"),
-			{
-				target: {
-					files: [new File(["dummy"], "test.jpg", { type: "image/jpeg" })],
-				},
-			}
-		);
-		// Loading spinner should appear
+		const fileInput = screen
+			.getAllByLabelText(/Upload from device|Or take a photo/i)[0]
+			.querySelector("input");
+		fireEvent.change(fileInput, {
+			target: {
+				files: [new File(["dummy"], "test.jpg", { type: "image/jpeg" })],
+			},
+		});
 		expect(screen.getByText(/Processing.../i)).toBeInTheDocument();
 	});
 
 	it("calls setItems, setScore, setPoints, setOffers on image upload", async () => {
-		const setItems = jest.fn();
-		const setScore = jest.fn();
-		const setPoints = jest.fn();
-		const setOffers = jest.fn();
+		const setItems = vi.fn();
+		const setScore = vi.fn();
+		const setPoints = vi.fn();
+		const setOffers = vi.fn();
 		setup({ setItems, setScore, setPoints, setOffers });
 		const fileInput = screen
 			.getAllByLabelText(/Upload from device|Or take a photo/i)[0]

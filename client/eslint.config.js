@@ -22,6 +22,11 @@ export default defineConfig([
         sourceType: 'module',
       },
     },
+    env: {
+      browser: true,
+      es2021: true,
+      jest: true, // <-- Add this line
+    },
     rules: {
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
     },
