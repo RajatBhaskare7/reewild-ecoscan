@@ -56,10 +56,10 @@ const ResultComponent = ({ items, score, points }) => {
 			{score !== undefined && (
 				<div className="mb-6 p-4 bg-gradient-to-r from-[#f8f9fa] to-[#e9ecef] rounded-xl border border-gray-200">
 					<div className="flex items-center justify-between mb-3">
-						<h3 className="text-[12px] font-semibold text-[#063C44] flex items-center">
+						<h3 className="text-[15px] font-semibold text-[#063C44] flex items-center">
 							🌍 Carbon Footprint
 						</h3>
-						<span className={`text-2xl ${getScoreColor(score)}`}>
+						<span className={`text-lg ${getScoreColor(score)}`}>
 							{getScoreIcon(score)}
 						</span>
 					</div>
