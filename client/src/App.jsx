@@ -8,7 +8,7 @@ const App = () => {
 	const [offers, setOffers] = useState([]);
 
 	return (
-		<div className= "w-full h-full md:w-screen md:h-screen flex flex-col items-center justify-center bg-gradient-to-br from-[#063C44] to-[#11A97E] p-4">
+		<div className= "w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-[#063C44] to-[#11A97E] p-4">
 			<UploadComponent
 				items={items}
 				setItems={setItems}
