@@ -124,7 +124,7 @@ const UploadComponent = ({
 	// };
 
 	return (
-		<div className="h-full w-full flex flex-col md:flex-row items-start justify-center bg-gradient-to-br from-[#063C44] to-[#11A97E] p-4 gap-y-8 md:gap-y-0 md:gap-x-8">
+		<div className="h-full w-full flex flex-col md:flex-row items-start justify-center from-[#063C44] to-[#11A97E] p-4 gap-y-8 md:gap-y-0 md:gap-x-8">
 			{/* Upload Section */}
 			<div className="relative bg-white rounded-2xl md:gap-y-11 shadow-lg p-8 w-full max-w-2xl flex flex-col items-center mb-0 md:mb-0">
 				{loading && (
@@ -218,7 +218,7 @@ const UploadComponent = ({
 			</div>
 
 			{/* Results Section */}
-			<div className="w-full max-w-2xl flex flex-col md:flex-row gap-6">
+			<div className="w-full max-w-4xl flex flex-col md:flex-row gap-6">
 				<div className="flex-1 bg-white rounded-2xl shadow-lg p-6 flex flex-col items-start">
 					<ResultComponent items={items} score={score} points={points} />
 				</div>

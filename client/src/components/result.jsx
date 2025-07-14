@@ -54,7 +54,7 @@ const ResultComponent = ({ items, score, points }) => {
 
 			{/* Carbon Score Section */}
 			{score !== undefined && (
-				<div className="mb-6 p-4 bg-gradient-to-r from-[#f8f9fa] to-[#e9ecef] rounded-xl border border-gray-200">
+				<div className="mb-6 w-full p-4 bg-gradient-to-r from-[#f8f9fa] to-[#e9ecef] rounded-xl border border-gray-200">
 					<div className="flex items-center justify-between mb-3">
 						<h3 className="text-[15px] font-semibold text-[#063C44] flex items-center">
 							🌍 Carbon Footprint
