@@ -136,10 +136,10 @@ The backend uses a simple in-memory mapping to assign carbon scores to clothing 
 
 ## 📲 Deployment
 
-- **Frontend:** Deploy on Vercel, Netlify, or similar.
-- **Backend:** Deploy on Render, Heroku, or similar.
+- **Frontend:** Deploy on Vercel.
+- **Backend:** Deploy on Render.
 - **Live Demo:**  
-  [https://reewild-ecoscan.onrender.com](https://reewild-ecoscan.onrender.com) (update with your actual deployment link)
+  [https://reewild-ecoscan.vercel.app/](https://reewild-ecoscan.vercel.app/)
 
 ---
 
