@@ -101,7 +101,7 @@ const ResultComponent = ({ items, score, points }) => {
 						<h3 className="text-lg font-semibold flex items-center">
 							⭐ Eco Rewards
 						</h3>
-						<span className="text-2xl">🎁</span>
+						<span className="text-lg">🎁</span>
 					</div>
 
 					<div className="text-center">
