@@ -23,7 +23,7 @@ const OffersComponent = ({ offers }) => {
 
 	return (
 		<>
-			<h2 className="text-lg font-bold mb-6 text-[#063C44] flex items-center">
+			<h2 className="text-xl font-bold mb-6 text-[#063C44] flex items-center">
 				🎁 Available Offers
 			</h2>
 
