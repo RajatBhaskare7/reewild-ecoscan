@@ -8,8 +8,6 @@ exports.calculateScore = (req, res) => {
     total += scores[item] || 0;
   });
   const points = Math.floor(total / 2);
-  console.log("Items received:", items);
-console.log("Score map:", scores);
   res.json({ totalScore: total, rewardPoints: points });
 };
 
